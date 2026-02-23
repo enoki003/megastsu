@@ -43,7 +43,7 @@ body {
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
 	background-size: 100% 600px;
 	color: rgb(var(--black));
-	font-size: 1rem; /* 16px */
+	font-size: 1em; 
 	line-height: 1.6; /* 論文向けにゆったりめ */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -74,7 +74,7 @@ h6 {
 		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-weight: 700;
 }
-h1 { font-size: 1.75rem; }
+h1 { font-size: 1.40rem; }
 h2 { font-size: 1.25rem; }
 h3 { font-size: 1.05rem; }
 h4 { font-size: 1rem; }
@@ -95,7 +95,7 @@ a:hover {
 }
 p {
 	margin-bottom: 1.25rem;
-	font-size: 1rem;
+	font-size: 18px;
 	text-align: justify;
 	text-justify: inter-ideograph;
 }
