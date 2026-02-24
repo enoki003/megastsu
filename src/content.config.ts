@@ -32,6 +32,7 @@ const notes = defineCollection({
 const journal = defineCollection({
 	type: 'content',
 	schema:base.extend({
+		description: z.string().optional(),
 	})
 });
 
