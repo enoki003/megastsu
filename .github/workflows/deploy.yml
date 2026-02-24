@@ -40,11 +40,11 @@ jobs:
 
       - name: "Guard: deploy target marker must exist"
         run: |
-          ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts -o IdentitiesOnly=yes \
+          ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts -o BatchMode=yes \
             "${{ secrets.SAKURA_USER }}@${{ secrets.SAKURA_HOST }}" \
             "test -f '${{ secrets.SAKURA_DEPLOY_DIR }}.deploy-root'"
 
       - name: "Deploy via rsync (guarded)"
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts" dist/ \
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts -o BatchMode=yes" dist/ \
             "${{ secrets.SAKURA_USER }}@${{ secrets.SAKURA_HOST }}:${{ secrets.SAKURA_DEPLOY_DIR }}"
