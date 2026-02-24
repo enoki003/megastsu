@@ -7,7 +7,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,23 +24,27 @@ jobs:
         run: npm run build
 
       - name: "Guard: dist must exist"
-        run: |
-          test -f dist/index.html
+        run: test -f dist/index.html
 
-      - name: "Setup SSH"
+      - name: "Install pinned known_hosts"
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SAKURA_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "${{ secrets.SAKURA_HOST }}" >> ~/.ssh/known_hosts
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SAKURA_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: "Start ssh-agent and add key"
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.SAKURA_SSH_PRIVATE_KEY }}
 
       - name: "Guard: deploy target marker must exist"
         run: |
-          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes \
+          ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts -o IdentitiesOnly=yes \
             "${{ secrets.SAKURA_USER }}@${{ secrets.SAKURA_HOST }}" \
             "test -f '${{ secrets.SAKURA_DEPLOY_DIR }}.deploy-root'"
 
       - name: "Deploy via rsync (guarded)"
         run: |
-          rsync -avz --delete dist/ \
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts" dist/ \
             "${{ secrets.SAKURA_USER }}@${{ secrets.SAKURA_HOST }}:${{ secrets.SAKURA_DEPLOY_DIR }}"
