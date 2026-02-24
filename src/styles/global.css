@@ -11,7 +11,7 @@
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
 	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--gray-gradient: rgba(var(--gray-light), 50%), #faf7f2;
 	--box-shadow:
 }
 
@@ -39,6 +39,7 @@ body {
 	text-align: left;
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
 	background-size: 100% 600px;
+	background-color: #faf7f2;
 	color: rgb(var(--black));
 	font-size: 1em; 
 	line-height: 1.6;
@@ -77,6 +78,30 @@ h3 { font-size: 1.05rem; }
 h4 { font-size: 1rem; }
 h5 { font-size: 0.95rem; }
 h6 { font-size: 0.9rem; }
+
+/* notes など学術的コンテンツ用：セクション見出しの前に十分な余白を確保 */
+.prose h1 {
+	margin-top: 2.5rem;
+	margin-bottom: 0;
+}
+.prose h2 {
+	margin-top: 2.5rem;
+	margin-bottom: 0;
+}
+.prose h3 {
+	margin-top: 2rem;
+	margin-bottom: 0;
+}
+.prose h4 {
+	margin-top: 1.5rem;
+	margin-bottom: 0;
+}
+.prose h2:first-child,
+.prose h3:first-child {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: none;
+}
 strong,
 b {
 	font-weight: 700;
@@ -88,7 +113,18 @@ a:hover {
 	color: var(--accent);
 }
 .prose p {
-	margin-bottom: 1.6rem;
+	margin-bottom: 1rem;
+	line-height: 1.7;
+	letter-spacing: 0.04em;
+}
+.prose ul,
+.prose ol {
+	padding-left: 1.5em;
+	margin-bottom: 1rem;
+}
+.prose li {
+	margin-bottom: 0.3rem;
+	line-height: 1.6;
 }
 p {
 	margin-bottom: 1.25rem;
@@ -166,8 +202,4 @@ main > section + section {
 
 section h2 {	
   margin-bottom: 1.2rem;
-}
-
-section p {
-  line-height: 1.9;
 }
