@@ -1,5 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
 
 const url = new URL(Astro.request.url);
 const category = url.searchParams.get("category"); // tech 等
@@ -22,26 +26,16 @@ const tags = Array.from(tagSet).sort();
 const categories = ["note", "tech", "biz", "idea"];
 ---
 
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <BaseHead title={`Notes - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
 <h1>Notes</h1>
-
-<section>
-  <div>
-    Category:
-    <a href="/notes">all</a>
-    {categories.map((c) => (
-      <a href={`/notes?category=${c}${tag ? `&tag=${tag}` : ""}`}>{c}</a>
-    ))}
-  </div>
-
-  <div>
-    Tag:
-    <a href={`/notes${category ? `?category=${category}` : ""}`}>all</a>
-    {tags.map((t) => (
-      <a href={`/notes?tag=${t}${category ? `&category=${category}` : ""}`}>{t}</a>
-    ))}
-  </div>
-</section>
-
 <ul>
   {filtered.map((e) => (
     <li>
@@ -49,4 +43,4 @@ const categories = ["note", "tech", "biz", "idea"];
       <small> {e.data.category}</small>
     </li>
   ))}
-</ul>
+</ul></file>
