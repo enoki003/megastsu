@@ -1,9 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import BaseHead from '../../components/BaseHead.astro';
-import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import NotesPost from '../../layouts/notesPost.astro';
 
 export const getStaticPaths = (async () => {
   const entries = await getCollection("notes", ({ data }) => !data.draft);
@@ -16,19 +14,6 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<!doctype html>
-<html lang="ja">
-    <head>
-        <BaseHead title={`Notes - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-    </head>
-    <body>
-        <Header />
-  <body>
-    <main>
-      <article>
-        <h1>{entry.data.title}</h1>
-        <Content />
-      </article>
-    </main>
-  </body>
-</html>
+<NotesPost {...entry.data}>
+  <Content />
+</NotesPost>

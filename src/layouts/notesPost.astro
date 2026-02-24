@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
@@ -8,26 +7,17 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'notes'>['data'];
 
-const { title, date,category, tags, draft} = Astro.props;
+const { title, date } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="ja">
 	<head>
 		<BaseHead title={title} description={title} />
-		<style>
+		<style is:global>
 			main {
 				width: calc(100% - 2em);
 				max-width: 100%;
 				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
 			}
 			.prose {
 				width: 720px;
@@ -44,13 +34,12 @@ const { title, date,category, tags, draft} = Astro.props;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+				border-top: none;
+				padding-top: 0;
 			}
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
 			}
 		</style>
 	</head>
@@ -61,17 +50,10 @@ const { title, date,category, tags, draft} = Astro.props;
 			<article>
 				<div class="prose">
 					<div class="title">
+                        <h1>{title}</h1>
 						<div class="date">
 							<FormattedDate date={date} />
-							{
-								date && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={date} />
-									</div>
-								)
-							}
 						</div>
-						<h1>{title}</h1>
 						<hr />
 					</div>
 					<slot />
