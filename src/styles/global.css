@@ -37,8 +37,6 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
 	background-color: #faf7f2;
 	color: rgb(var(--black));
 	font-size: 1em; 
@@ -46,11 +44,11 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
-
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	line-break: strict;
 	word-break: normal;
+	min-height: 100vh;
 }
 main {
 	width: 720px;
