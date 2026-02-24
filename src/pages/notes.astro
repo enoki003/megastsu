@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+
+const url = new URL(Astro.request.url);
+const category = url.searchParams.get("category"); // tech 等
+const tag = url.searchParams.get("tag");           // astro 等
+
+const all = await getCollection("notes", ({ data }) => !data.draft);
+
+// クエリでフィルタ（未指定なら全件）
+const filtered = all
+  .filter((e) => (category ? e.data.category === category : true))
+  .filter((e) => (tag ? e.data.tags.includes(tag) : true))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// UI用：タグの全集合
+const tagSet = new Set<string>();
+for (const e of all) for (const t of e.data.tags) tagSet.add(t);
+const tags = Array.from(tagSet).sort();
+
+// UI用：カテゴリ（enumと同じ値を並べるのが安全）
+const categories = ["note", "tech", "biz", "idea"];
+---
+
+<h1>Notes</h1>
+
+<section>
+  <div>
+    Category:
+    <a href="/notes">all</a>
+    {categories.map((c) => (
+      <a href={`/notes?category=${c}${tag ? `&tag=${tag}` : ""}`}>{c}</a>
+    ))}
+  </div>
+
+  <div>
+    Tag:
+    <a href={`/notes${category ? `?category=${category}` : ""}`}>all</a>
+    {tags.map((t) => (
+      <a href={`/notes?tag=${t}${category ? `&category=${category}` : ""}`}>{t}</a>
+    ))}
+  </div>
+</section>
+
+<ul>
+  {filtered.map((e) => (
+    <li>
+      <a href={`/notes/${e.slug}/`}>{e.data.title}</a>
+      <small> {e.data.category}</small>
+    </li>
+  ))}
+</ul>

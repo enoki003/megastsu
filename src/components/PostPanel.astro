@@ -1,0 +1,44 @@
+---
+type Props = {
+  href: string;
+  title: string;
+  date: Date;
+  category?: string;
+  tags?: string[];
+  description?: string;
+};
+
+const { href, title, date, category, tags = [], description } = Astro.props;
+---
+
+<article class="panel">
+  <a class="panel__link" href={href}>
+    <header class="panel__header">
+      <h2 class="panel__title">{title}</h2>
+      <time class="panel__date" datetime={date.toISOString()}>
+        {date.toLocaleDateString("ja-JP")}
+      </time>
+    </header>
+
+    {description ? <p class="panel__desc">{description}</p> : null}
+
+    <footer class="panel__meta">
+      {category ? <span class="chip chip--category">{category}</span> : null}
+      {tags.map((t) => (
+        <span class="chip">{t}</span>
+      ))}
+    </footer>
+  </a>
+</article>
+
+<style>
+  .panel { border: 1px solid rgba(0,0,0,.12); border-radius: 12px; overflow: hidden; }
+  .panel__link { display: block; padding: 16px; text-decoration: none; color: inherit; }
+  .panel__header { display: flex; gap: 12px; align-items: baseline; justify-content: space-between; }
+  .panel__title { margin: 0; font-size: 1.05rem; line-height: 1.3; }
+  .panel__date { opacity: .7; font-size: .9rem; white-space: nowrap; }
+  .panel__desc { margin: 10px 0 0; opacity: .85; }
+  .panel__meta { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: .8rem; padding: 3px 8px; border: 1px solid rgba(0,0,0,.12); border-radius: 999px; opacity: .9; }
+  .chip--category { font-weight: 600; }
+</style>

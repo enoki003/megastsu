@@ -16,4 +16,24 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const base = z.object({
+	title: z.string(),
+	date: z.coerce.date(),
+	draft: z.boolean().default(false),
+})
+
+const notes = defineCollection({
+	type: 'content',
+	schema:base.extend({
+		category: z.enum(["note","tech","research","other"]).default("note"),
+		tags: z.array(z.string()).default([]),
+	})
+});
+
+const journal = defineCollection({
+	type: 'content',
+	schema:base.extend({
+	})
+});
+
+export const collections = { blog, notes, journal };
