@@ -25,8 +25,7 @@ const base = z.object({
 const notes = defineCollection({
 	type: 'content',
 	schema:base.extend({
-		category: z.enum(["note","tech","research","other"]).default("note"),
-		tags: z.array(z.string()).default([]),
+		description: z.string().optional(),
 	})
 });
 
