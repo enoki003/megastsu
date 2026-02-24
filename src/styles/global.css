@@ -13,11 +13,9 @@
 	--gray-dark: 34, 41, 57;
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
 }
-/* ルート基準（論文寄りに16pxを基準にする） */
-html { font-size: 16px; }
+
+html { font-size: 18px; }
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -33,7 +31,6 @@ html { font-size: 16px; }
 	font-display: swap;
 }
 body {
-	/* 本文はセリフ系を優先して論文の雰囲気に。フォールバックで日本語サンセリフを続ける */
 	font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman",
 		"Atkinson", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", -apple-system,
 		"Segoe UI", Roboto, "Helvetica Neue", Arial, serif;
@@ -44,7 +41,7 @@ body {
 	background-size: 100% 600px;
 	color: rgb(var(--black));
 	font-size: 1em; 
-	line-height: 1.6; /* 論文向けにゆったりめ */
+	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
