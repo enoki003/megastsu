@@ -3,6 +3,8 @@ name: Deploy to Sakura
 on:
   push:
     branches: ["master"]
+  pull_request:
+    branches: ["master"]
 
 jobs:
   build-and-deploy:
@@ -27,6 +29,7 @@ jobs:
         run: test -f dist/index.html
 
       - name: "Install pinned known_hosts"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
@@ -34,17 +37,20 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
 
       - name: "Start ssh-agent and add key"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.SAKURA_SSH_PRIVATE_KEY }}
 
       - name: "Guard: deploy target marker must exist"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts -o BatchMode=yes \
             "${{ secrets.SAKURA_USER }}@${{ secrets.SAKURA_HOST }}" \
             "test -f '${{ secrets.SAKURA_DEPLOY_DIR }}/.deploy-root'"
 
       - name: "Deploy via rsync (guarded)"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           rsync -avz --delete \
             --exclude '.deploy-root' \
