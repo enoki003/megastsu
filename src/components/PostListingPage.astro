@@ -1,0 +1,63 @@
+---
+import { imageConfig } from 'astro:assets'
+import BaseHead from './BaseHead.astro'
+import Header from './Header.astro'
+import Footer from './Footer.astro'
+import PostPanel from './PostPanel.astro'
+
+type Entry = {
+    slug: string;
+    data: {
+        title: string;
+        date: Date;
+        description?: string;
+    }
+}
+
+interface Props {
+    title:string; 
+    basePath: string;
+    entries: Entry[];
+    pageTitle: string;
+    description: string;
+}
+
+const { title, basePath, entries, pageTitle, description } = Astro.props;
+
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <BaseHead title={pageTitle} description={description} />
+    <style>
+      .card-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>{title}</h1>
+      <ul class="card-list">
+        {entries.map((e) => (
+          <li>
+            <PostPanel
+              href={`${basePath}/${e.slug}/`}
+              title={e.data.title}
+              date={e.data.date}
+              description={e.data.description}
+            />
+          </li>
+        ))}
+      </ul>
+    </main>
+    <Footer />
+  </body>
+</html>
