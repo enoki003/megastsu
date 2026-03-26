@@ -29,6 +29,7 @@ const { title, basePath, entries, pageTitle, description } = Astro.props;
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <meta charset="UTF-8" />
     <BaseHead title={pageTitle} description={description} />
     <style>
       .card-list {
@@ -41,7 +42,7 @@ const { title, basePath, entries, pageTitle, description } = Astro.props;
       }
     </style>
   </head>
-  <body>
+  <body> 
     <Header />
     <main>
       <h1>{title}</h1>
