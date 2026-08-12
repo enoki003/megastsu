@@ -1,29 +1,10 @@
 ---
-const today = new Date();
+import { Separator } from './ui/separator';
+
+const year = new Date().getFullYear();
 ---
 
-<footer>
-
-	
+<footer class="mt-16 px-4 pb-10 text-center">
+	<Separator className="mx-auto mb-6 max-w-[720px]" />
+	<p class="m-0 text-sm text-muted-foreground">&copy; {year} Yuhi Sonoki</p>
 </footer>
-<style>
-	footer {
-		padding: 1.5em 1em;
-		background: transparent;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>

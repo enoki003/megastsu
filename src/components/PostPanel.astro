@@ -1,32 +1,30 @@
 ---
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
+
 type Props = {
-  href: string;
-  title: string;
-  date: Date;
-  description?: string;
+	href: string;
+	title: string;
+	date: Date;
+	description?: string;
 };
 
 const { href, title, date, description } = Astro.props;
 ---
 
-<article class="panel">
-  <a class="panel__link" href={href}>
-    <header class="panel__header">
-      <h2 class="panel__title">{title}</h2>
-      <time class="panel__date" datetime={date.toISOString()}>
-        {date.toLocaleDateString("ja-JP")}
-      </time>
-    </header>
-    {description ? <p class="panel__desc">{description}</p> : null}
-  </a>
-</article>
-
-<style>
-  .panel { border: 1px solid rgba(0,0,0,.10); border-radius: 10px; overflow: hidden; background: #fefbf7; transition: box-shadow 0.15s; }
-  .panel:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-  .panel__link { display: block; padding: 16px; text-decoration: none; color: inherit; }
-  .panel__header { display: flex; gap: 12px; align-items: baseline; justify-content: space-between; }
-  .panel__title { margin: 0; font-size: 1.05rem; line-height: 1.3; }
-  .panel__date { opacity: .7; font-size: .9rem; white-space: nowrap; }
-  .panel__desc { margin: 10px 0 0; opacity: .85; }
-</style>
+<a href={href} class="block no-underline">
+	<Card className="gap-2">
+		<CardHeader className="flex flex-row items-baseline justify-between gap-3 space-y-0">
+			<CardTitle className="text-[1.05rem]">{title}</CardTitle>
+			<time datetime={date.toISOString()} class="whitespace-nowrap text-sm text-muted-foreground">
+				{date.toLocaleDateString('ja-JP')}
+			</time>
+		</CardHeader>
+		{
+			description ? (
+				<CardContent>
+					<CardDescription>{description}</CardDescription>
+				</CardContent>
+			) : null
+		}
+	</Card>
+</a>
