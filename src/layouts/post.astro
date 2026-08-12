@@ -19,28 +19,6 @@ const { title, date } = Astro.props;
 				max-width: 100%;
 				margin: 0;
 			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-				border-top: none;
-				padding-top: 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
 		</style>
 	</head>
 
@@ -48,10 +26,10 @@ const { title, date } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="prose">
-					<div class="title">
-                        <h1>{title}</h1>
-						<div class="date">
+				<div class="prose mx-auto w-[720px] max-w-[calc(100%-2em)] p-4 text-foreground">
+					<div class="mb-4 py-4 text-center leading-none">
+						<h1 class="mb-2 border-t-0 pt-0">{title}</h1>
+						<div class="mb-2 text-muted-foreground">
 							<FormattedDate date={date} />
 						</div>
 						<hr />

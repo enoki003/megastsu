@@ -1,21 +1,11 @@
+@import "tailwindcss";
+
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
+  The CSS in this file is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-:root {
-	--accent: #0c6800;
-	--accent-dark: #003f14;
-	--black: 0, 0, 0;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #faf7f2;
-	--box-shadow:
-}
-
-html { font-size: 18px; }
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -30,52 +20,172 @@ html { font-size: 18px; }
 	font-style: normal;
 	font-display: swap;
 }
-body {
-	font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman",
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--font-sans: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman",
 		"Atkinson", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", -apple-system,
 		"Segoe UI", Roboto, "Helvetica Neue", Arial, serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background-color: #faf7f2;
-	color: rgb(var(--black));
-	font-size: 1em; 
-	line-height: 1.6;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-rendering: optimizeLegibility;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	line-break: strict;
-	word-break: normal;
-	min-height: 100vh;
+	--font-heading: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", -apple-system,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+:root {
+	--radius: 0.625rem;
+	--background: #faf7f2;
+	--foreground: #000000;
+	--card: #fefbf7;
+	--card-foreground: #000000;
+	--popover: #fefbf7;
+	--popover-foreground: #000000;
+	--primary: #0c6800;
+	--primary-foreground: #ffffff;
+	--secondary: #e5e9f0;
+	--secondary-foreground: #222941;
+	--muted: #e5e9f0;
+	--muted-foreground: #60739f;
+	--accent: #0c6800;
+	--accent-foreground: #ffffff;
+	--destructive: #b3261e;
+	--border: rgba(0, 0, 0, 0.1);
+	--input: rgba(0, 0, 0, 0.1);
+	--ring: #0c6800;
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+		font-family: var(--font-sans);
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		font-size: 1em;
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		line-break: strict;
+		word-break: normal;
+		min-height: 100vh;
+	}
+	html {
+		font-size: 18px;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 0 0 0.75rem 0;
+		color: var(--foreground);
+		line-height: 1.3;
+		font-family: var(--font-heading);
+		font-weight: 700;
+	}
+	h1 {
+		font-size: 1.4rem;
+	}
+	h2 {
+		font-size: 1.25rem;
+	}
+	h3 {
+		font-size: 1.05rem;
+	}
+	h4 {
+		font-size: 1rem;
+	}
+	h5 {
+		font-size: 0.95rem;
+	}
+	h6 {
+		font-size: 0.9rem;
+	}
+	strong,
+	b {
+		font-weight: 700;
+	}
+	a {
+		color: var(--accent);
+	}
+	a:hover {
+		color: var(--accent);
+	}
+	p {
+		margin-bottom: 1.25rem;
+		font-size: 18px;
+		text-align: justify;
+		text-justify: inter-ideograph;
+	}
+	textarea,
+	input {
+		font-size: 16px;
+	}
+	table {
+		width: 100%;
+	}
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 8px;
+	}
+	code {
+		padding: 2px 5px;
+		background-color: var(--muted);
+		border-radius: 2px;
+	}
+	pre {
+		padding: 1.5em;
+		border-radius: 8px;
+	}
+	pre > code {
+		all: unset;
+	}
+	blockquote {
+		border-left: 4px solid var(--accent);
+		padding: 0 0 0 20px;
+		margin: 0;
+		font-size: 1.333em;
+	}
+	hr {
+		border: none;
+		border-top: 1px solid var(--muted);
+	}
+}
+
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: 3em auto;
 	padding: 0 1em;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.75rem 0;
-	color: rgb(var(--black));
-	line-height: 1.3;
-	/* 見出しはゴシック（日本語サンセリフ）にして可読性を保つ */
-	font-family: "Hiragino Kaku Gothic ProN", "游教科書体", "Noto Sans JP", "Meiryo", -apple-system,
-		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-	font-weight: 700;
-}
-h1 { font-size: 1.40rem; }
-h2 { font-size: 1.25rem; }
-h3 { font-size: 1.05rem; }
-h4 { font-size: 1rem; }
-h5 { font-size: 0.95rem; }
-h6 { font-size: 0.9rem; }
 
 /* notes など学術的コンテンツ用：セクション見出しの前に十分な余白を確保 */
 .prose h1 {
@@ -100,16 +210,6 @@ h6 { font-size: 0.9rem; }
 	padding-top: 0;
 	border-top: none;
 }
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
 .prose p {
 	margin-bottom: 1rem;
 	line-height: 1.7;
@@ -124,49 +224,7 @@ a:hover {
 	margin-bottom: 0.3rem;
 	line-height: 1.6;
 }
-p {
-	margin-bottom: 1.25rem;
-	font-size: 18px;
-	text-align: justify;
-	text-justify: inter-ideograph;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
+
 @media (max-width: 720px) {
 	body {
 		font-size: 18px;
@@ -184,20 +242,16 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
 
 main > section + section {
-  margin-top: 4rem;
+	margin-top: 4rem;
 }
 
-section h2 {	
-  margin-bottom: 1.2rem;
+section h2 {
+	margin-bottom: 1.2rem;
 }
