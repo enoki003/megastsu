@@ -1,3 +1,9 @@
+/* @layer base に載せる — Tailwind の @import が theme/base/components/utilities の
+   レイヤー順を宣言しているので、ここを無レイヤーのまま残すと(CSS 仕様上レイヤー外の規則は
+   レイヤー内の規則に常に勝つため)要素既定値のはずの a{color} 等が、コンポーネント側の
+   Tailwind ユーティリティ(text-ink 等、@layer utilities に入る)より強くなってしまい、
+   現在地以外のヘッダーリンクまで緑になる、といった上書き不能なバグを生む。 */
+@layer base {
 html{font-size:var(--font-size-root)}
 body{font-family:var(--font-body);margin:0;padding:0;text-align:left;background-color:var(--surface-page);color:var(--text-body);font-size:1em;line-height:var(--leading-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;word-wrap:break-word;overflow-wrap:break-word;line-break:strict;word-break:normal;min-height:100vh}
 h1,h2,h3,h4,h5,h6{margin:0 0 .75rem 0;color:var(--text-body);line-height:var(--leading-heading);font-family:var(--font-display);font-weight:var(--weight-title);letter-spacing:var(--tracking-title)}
@@ -12,3 +18,4 @@ blockquote{border-left:var(--rule-quote);padding:0 0 0 20px;margin:0;font-size:v
 hr{border:none;border-top:var(--border-rule)}
 table{width:100%}
 .sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}
+}
