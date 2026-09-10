@@ -1,0 +1,29 @@
+---
+/* 二重罫 — 1px 墨の外枠、5px の素紙、1px の内枠。このブランドの唯一の器。
+   角丸ゼロ・影ゼロ。ホバー時のみ、ぼかしのない 1px 罫が下に落ちる。 */
+interface Props {
+  as?: string;
+  filled?: boolean;
+  tight?: boolean;
+  raised?: boolean;
+  class?: string;
+}
+const { as: Tag = 'div', filled = true, tight = false, raised = false, class: cls } = Astro.props;
+---
+<Tag
+  class:list={[
+    'border border-rule rounded-none p-[var(--frame-gap)] transition-shadow duration-[var(--dur-quick)]',
+    filled ? 'bg-panel' : 'bg-transparent',
+    raised && 'hover:shadow-raised',
+    cls,
+  ]}
+>
+  <div
+    class:list={[
+      'h-full box-border border border-rule-inner',
+      tight ? 'p-[var(--space-frame-tight)]' : 'p-[var(--space-frame)]',
+    ]}
+  >
+    <slot />
+  </div>
+</Tag>

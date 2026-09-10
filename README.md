@@ -15,14 +15,15 @@
 
 ## 技術スタック
 
-- [Astro](https://astro.build/)
-- Astro Content Collections
+- [Astro](https://astro.build/)（Content Collections、client JS はゼロ）
+- Tailwind CSS v4 + shadcn/ui（挙動のみ採用。角丸・影は全廃し、Megastsu Design System のトークンで再スキン）
 - Markdown / MDX
 - TypeScript
 - GitHub Actions
 - rsync + SSH によるさくらのレンタルサーバへのデプロイ
 
 Astroを採用している理由は、Markdown中心のコンテンツ管理と静的サイト生成の相性がよく、クライアント側のJavaScriptを最小限に抑えられるためです。
+shadcn/ui は見た目をそのまま使うのではなく、Radix ベースの挙動（フォーカス管理・キーボード操作）だけを借り、意匠は `src/styles/tokens/` の値で完全に上書きしています。デザインの根拠は [Megastsu Design System](https://github.com/enoki003/megastsu) 側にあります。
 
 ## ディレクトリ構成
 
@@ -32,17 +33,18 @@ Astroを採用している理由は、Markdown中心のコンテンツ管理と�
 ├── public/                         # favicon、フォントなどの静的ファイル
 ├── src/
 │   ├── assets/                     # OGP等で使用する画像
-│   ├── components/                 # 共通コンポーネント
+│   ├── components/                 # 共通コンポーネント（ui/ は shadcn 由来、皮は全面差し替え）
 │   ├── content/
 │   │   ├── notes/                  # Notesの記事
 │   │   └── journal/                # Journalの記事
-│   ├── layouts/                    # 記事レイアウト
-│   ├── lib/                        # 記事一覧取得などの補助処理
+│   ├── layouts/                    # BaseLayout / PostLayout
+│   ├── lib/                        # utils.ts（shadcn の cn ヘルパー）
 │   ├── pages/                      # ルーティング
-│   ├── styles/                     # グローバルCSS
+│   ├── styles/                     # トークン（tokens/）・Tailwind テーマ（theme.css）・本文（prose.css）
 │   ├── consts.ts                   # サイト名・説明文
 │   └── content.config.ts           # Content Collectionsのスキーマ
 ├── astro.config.mjs
+├── components.json                 # shadcn/ui CLI 設定
 ├── package.json
 └── README.md
 ```

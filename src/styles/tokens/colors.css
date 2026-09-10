@@ -1,0 +1,40 @@
+:root{
+  /* paper & ink — 生成り紙に墨。元サイトの #faf7f2 / 純黒 から、印刷物寄りに詰めた値。 */
+  --paper:#f9f8f6;            /* body background: オフホワイト */
+  --panel:#fefefd;            /* card surface, one step lighter */
+  --ink:#14120f;              /* 濃墨 — headings, titles, frame rules */
+  --ink-body:#3a342c;         /* 本文の墨 */
+  --ink-muted:#6b645a;        /* 日付・注記 */
+  --vermilion:#9b3b2c;        /* 朱 — 落款にのみ使う一点差し。他所では使わない。 */
+
+  /* legacy triplets kept so rgb(var(--gray)) call sites still resolve */
+  --black:20, 18, 15; /* @kind color */
+  --gray:107, 100, 90; /* @kind color */
+  --gray-light:226, 221, 211; /* @kind color */
+  --gray-dark:58, 52, 44; /* @kind color */
+
+  --accent:#0c6800;           /* 深緑 — links, active nav */
+  --accent-dark:#003f14;
+  --gray-gradient:rgba(var(--gray-light), 50%), #f9f8f6;
+
+  /* semantic aliases */
+  --surface-page:var(--paper);
+  --surface-card:var(--panel);
+  --surface-header:var(--paper);
+  --text-body:var(--ink);
+  --text-prose:var(--ink-body);
+  --text-muted:var(--ink-muted);
+  --text-link:var(--accent);
+  --text-link-hover:var(--accent);
+
+  /* 罫 — the frame system */
+  --rule-heavy:1px solid var(--ink);            /* 外枠 */
+  --rule-inner:1px solid rgba(20,18,15,.35); /* @kind other */    /* 内枠 */
+  --rule-hair:1px solid rgba(20,18,15,.18); /* @kind other */     /* 分割罫 */
+  --rule-quote:4px solid var(--accent);
+  --border-hairline:1px solid rgba(20,18,15,.35); /* @kind other */
+  --border-rule:1px solid rgba(20,18,15,.18); /* @kind other */
+  --rule-double:3px double rgba(20,18,15,.55); /* @kind other */ /* 二重罫の分割線 */
+  --frame-gap:5px;                              /* 二重罫の間隔 */
+  --code-bg:rgba(20,18,15,.07);
+}

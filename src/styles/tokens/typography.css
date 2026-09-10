@@ -1,0 +1,43 @@
+:root{
+  /* families — すべてWebフォント。OS依存の書体は使わない。
+     見出し: Zen Old Mincho（古典的で線の抑揚が強い明朝）
+     本文  : Noto Serif JP（小さい字でも崩れない明朝）
+     欧文  : EB Garamond（日付・欧文ラベル。古典的なオールドスタイル）
+     注記  : Zen Kaku Gothic New（Hiragino角ゴの代替） */
+  --font-body:"Noto Serif JP","EB Garamond","Atkinson",serif;
+  --font-latin:"EB Garamond","Noto Serif JP",serif;
+  /* 見出しも本文も明朝。ゴシックは注記・メタ情報のみに退いた。 */
+  --font-display:"Zen Old Mincho","Noto Serif JP","EB Garamond",serif;
+  --font-heading:"Zen Kaku Gothic New","Atkinson",sans-serif;
+
+  --font-size-root:18px;      /* html { font-size: 18px } */
+  --text-h1:1.40rem;
+  --text-h2:1.25rem;
+  --text-h3:1.05rem;
+  --text-h4:1rem;
+  --text-h5:0.95rem;
+  --text-h6:0.9rem;
+  --text-body-size:18px;
+  --text-panel-title:1.05rem;
+  --text-card-title:18px;     /* 二重罫カードの見出し */
+  --text-panel-date:0.9rem;
+  --text-quote:1.333em;
+  --text-sitetitle:15px;
+
+  --leading-body:1.6;
+  --leading-heading:1.3;
+  --leading-prose:1.7;
+
+  --tracking-prose:0.04em;    /* .prose p */
+  --tracking-nav:0.18em;      /* header nav links */
+  --tracking-sitetitle:0.0125em;
+
+  --tracking-title:0.06em;    /* 記事見出し */
+  --tracking-frame:0.4em;     /* 枠内の中央揃えラベル */
+  --tracking-date:0.18em;     /* Feb 25, 2026 */
+  --tracking-label:0.3em;     /* 小さな欧文ラベル */
+
+  --weight-regular:400;
+  --weight-title:600;
+  --weight-bold:700;
+}

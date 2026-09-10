@@ -1,0 +1,7 @@
+:root{
+  --dur-quick:0.15s; /* @kind other */
+  --ease-default:ease; /* @kind other */
+  --transition-link:color var(--dur-quick), border-bottom-color var(--dur-quick), opacity var(--dur-quick);
+  --transition-panel:box-shadow var(--dur-quick);
+  --hover-opacity:0.7; /* @kind other */
+}

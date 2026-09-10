@@ -1,90 +1,80 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+/* Profile — 扉、略歴、主題、連絡先。ボタンも誘導文も置かない。 */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Frame from '@/components/Frame.astro';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+
+const subjects = ['人工知能', '数学基礎論', '理論物理', '西洋哲学', '書評'];
+const correspondence = [
+  { key: 'Email', value: 'sonoyu1229@outlook.jp', href: 'mailto:sonoyu1229@outlook.jp' },
+  { key: 'X', value: '@sonoyu1229', href: 'https://x.com/sonoyu1229' },
+  { key: 'GitHub', value: 'enoki003', href: 'https://github.com/enoki003' },
+  { key: 'Instagram', value: 'enoki003', href: 'https://www.instagram.com/enoki003/' },
+];
 ---
+<BaseLayout>
+  <main class="mx-auto mb-[5em] w-prose max-w-[calc(100%-2em)] px-[1em]">
+    <Frame filled={false}>
+      <div class="flex min-h-[280px] flex-col items-center justify-center text-center">
+        <div class="mb-[34px] font-garamond text-[12px] uppercase tracking-[var(--tracking-label)] text-ink-muted">Profile</div>
+        <div>
+          <div class="font-garamond text-[30px] leading-[1.35] tracking-[0.14em] text-ink">Yuhi Sonoki</div>
+          <div class="mx-auto my-[22px] h-px w-[46px] bg-rule-inner"></div>
+          <div class="font-mincho-body text-[13px] leading-[2] tracking-[0.1em] text-ink-muted">
+            情報理工学部 在学<br />人工知能・数学基礎論
+          </div>
+        </div>
+      </div>
+    </Frame>
 
-<!doctype html>
-<html lang="ja">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
+    <section class="mt-[4.5rem]">
+      <header class="mb-[30px] text-center">
+        <div class="mb-3 font-garamond text-[11px] uppercase tracking-[var(--tracking-label)] text-ink-muted">Biography</div>
+        <h2 class="m-0 font-mincho-display [font-weight:var(--weight-title)] text-[18px] tracking-[0.24em] indent-[0.24em] text-ink">略歴</h2>
+        <div class="mx-auto mt-4 w-[280px] border-b-[3px] border-double border-b-[rgb(var(--black)/.55)]"></div>
+      </header>
+      <p class="mx-auto max-w-[560px] font-mincho-body text-[15px] leading-[2.1] tracking-[0.06em] text-ink-body justify-ideograph">
+        京都府立京都すばる高等学校 情報科学科を経て、京都産業大学 情報理工学部に在学。人工知能を主題としつつ、数学基礎論、理論物理、西洋哲学に関心を持つ。学問の分類は利便上のものであって、実際には全てが繋がっていると考えている。
+      </p>
+      <p class="mx-auto mt-[1.4rem] max-w-[560px] font-mincho-body text-[15px] leading-[2.1] tracking-[0.06em] text-ink-body justify-ideograph">
+        本、背広、珈琲、骨董、散歩。昭和の文化を好み、昔ながらの良き紳士たらんと努めている。
+      </p>
+    </section>
 
-			<section>
+    <section class="mt-[3.5rem]">
+      <header class="mb-[30px] text-center">
+        <div class="mb-3 font-garamond text-[11px] uppercase tracking-[var(--tracking-label)] text-ink-muted">Subjects</div>
+        <h2 class="m-0 font-mincho-display [font-weight:var(--weight-title)] text-[18px] tracking-[0.24em] indent-[0.24em] text-ink">主題</h2>
+        <div class="mx-auto mt-4 w-[280px] border-b-[3px] border-double border-b-[rgb(var(--black)/.55)]"></div>
+      </header>
+      <div class="flex flex-wrap justify-center gap-[10px]">
+        {subjects.map((subject) => <Badge>{subject}</Badge>)}
+      </div>
+    </section>
 
-				<h1>筆者について</h1>
-				<p>
-					京都府立京都すばる高等学校の情報科学科出身で、京都産業大学の情報理工学部に在学しております。
-					園木優陽（そのきゆうひ）と申します。
-					メインとして情報、特にに人工知能に関することをしております。
-					情報が主軸ではございますが、数学基礎論や理論物理、西洋哲学など幅広い分野に興味があります。
-					というのも、学問というものは利便上の分類があるだけであって、実際には全てが繋がっていると考えているからです。
-					趣味は本、背広、コーヒー、骨董品収集、散歩など幅広いです。
-					昭和の文化が好きで、昔ながらの良き紳士になれるよう努力しております。
-				</p>	
-			</section>
-
-			
-			<section>
-
-				<h1>このサイトについて</h1>
-				<p>
-					このサイトでは、私の日々の研究、勉強ノート、本の書評や解説など日々の活動を記録しております。
-					特に、人工知能や数学、物理学などの理系分野を中心に、哲学や文学などの文系分野も幅広く扱っております。
-					また、趣味の内容も記録しております。基本的に、余計な情報や装飾を排除し、文字をつかいそのコンテキストで
-					自身の考えを正確に伝えることを心がけております。また、内容においては極力ニュートラルな立場から論ずることを意識してはいるものの、
-					やはり人間たるもの、完全に主観を排除することは不可能でありますので、皆様もそのような前提のもと、記事を読んでいただけたら幸いでございます。
-					そして、私はまだまだ学生の身分であるため、内容に関して不正確な部分や誤りがある可能性もございます。
-					その点に関しては、もしお気づきの点がございましたら、ぜひご指摘・ご指導をいただければ幸いでございます、
-				</p>
-	
-				<h2> サイトを作った経緯</h2>
-				<p>中学から情報の道を志し、情報科学科の高校を得て、情報理工学部の大学へと進んできたものでありますが、いざこれまでの自分を振り返ってみると、
-					目に見えてわかる作品があまりないことに気づきました。というのも、分野が幅広く、横断的で、どちらかと言えば技術者というより理論家であるためです。
-					もちろん今まで空想に耽っていたわけではなく、日々研究や勉強をしておりますが、その内容を世に出すことはしてきませんでした。
-					そこで、少しでも自分の活動を多くの人に見てもらえるようにするために、このサイトを作ることにしました。
-					私の書いたものが、世の中の皆さまのお役に立てれば幸いであると考えております。</p>
-	
-				<h2>サイトの構成</h2>
-				<ul>
-					<li>Profile: 筆者のプロフィールやこのサイトについての説明など。</li>
-					<li>Notes: 筆者の研究や勉強の内容について、より正確な文献のもと記録したもの。</li>
-					<li>Journal: 筆者の日々の活動の記録。エッセイ的なもの、趣味のことなど。正式な文書ではない雑多なもの。</li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>更新予定</h1>
-				<ul>
-					<li>記事をtypestかLatexで書けるようにする。</li>
-					<li>記事のカテゴリ分け、タグ機能、検索の追加</li>
-					<li>記事一覧のページング機能を作成</li>
-				</ul>
-			</section>
-
-			<section>
-			<h1>お問合せ</h1>
-			<p>ご質問やご指摘などがあれば、以下のメールアドレスまでご連絡ください。</p>
-			<p><a href="mailto:sonoyu1229@outlook.jp">sonoyu1229@outlook.jp</a></p>
-			</section>
-
-			<section>
-			<h1>各種SNSリンク</h1>
-				<ul>
-					<li>X: <a href="https://x.com/sonoyu1229" target="_blank">@sonoyu1229</a></li>
-					<li>GitHub: <a href="https://github.com/enoki003" target="_blank">enoki003</a></li>
-					<li>Instagram: <a href="https://www.instagram.com/enoki003/" target="_blank">enoki003</a></li>
-					<li>Linkedin: <a href="https://www.linkedin.com/in/%E5%84%AA%E9%99%BD-%E5%9C%92%E6%9C%A8-3bbbb7402/"target="_blank">園木優陽</a></li>
-				</ul>
-			</section>
-		</main>
-	</body>
-</html>
-
-
-
-
-<!-- //ちなみに、このサイトはAstroというフレームワークを用いて作成しております。Astroは、コンポーネントベースの静的サイトジェネレーターであり、ReactやVueなどのフレームワークと組み合わせて使用することができます。 -->
+    <section class="mt-[3.5rem] text-center">
+      <header class="mb-[30px] text-center">
+        <div class="mb-3 font-garamond text-[11px] uppercase tracking-[var(--tracking-label)] text-ink-muted">Correspondence</div>
+        <h2 class="m-0 font-mincho-display [font-weight:var(--weight-title)] text-[18px] tracking-[0.24em] indent-[0.24em] text-ink">連絡先</h2>
+        <div class="mx-auto mt-4 w-[280px] border-b-[3px] border-double border-b-[rgb(var(--black)/.55)]"></div>
+      </header>
+      <div class="inline-flex flex-col text-left">
+        {correspondence.map(({ key, value, href }, i) => (
+          <>
+            <a
+              href={href}
+              target={href.startsWith('mailto') ? undefined : '_blank'}
+              rel="noreferrer"
+              class="flex items-baseline gap-[18px] py-[14px] no-underline"
+            >
+              <span class="min-w-0 flex-[0_0_128px] overflow-hidden font-garamond text-[13px] uppercase tracking-[var(--tracking-label)] text-ink-muted">{key}</span>
+              <span class="min-w-0 flex-1 font-garamond text-[16px] tracking-[0.06em] text-fukamidori">{value}</span>
+            </a>
+            {i < correspondence.length - 1 && <Separator />}
+          </>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

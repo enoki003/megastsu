@@ -1,0 +1,11 @@
+/* 読む段。src/styles/global.css の .prose 規則と layouts/post.astro に対応する。 */
+.prose{width:var(--measure-prose);max-width:calc(100% - 2em);margin:auto;padding:2.5em 1em 1em;color:var(--text-prose);font-family:var(--font-body)}
+.prose h1,.prose h2{margin-top:var(--space-prose-h2);margin-bottom:0;padding-bottom:10px;border-bottom:var(--rule-double)}
+.prose h3{margin-top:var(--space-prose-h3);margin-bottom:0}
+.prose h4{margin-top:var(--space-prose-h4);margin-bottom:0}
+.prose>h1:first-child,.prose>h2:first-child,.prose>h3:first-child{margin-top:0;padding-top:0;border-top:none}
+.prose p{margin-bottom:1.4rem;font-size:16px;line-height:1.95;letter-spacing:var(--tracking-prose);text-align:justify;text-justify:inter-ideograph}
+.prose ul,.prose ol{padding-left:1.5em;margin-bottom:1rem}
+.prose li{margin-bottom:.5rem;line-height:1.9}
+.prose blockquote{border-left:var(--rule-quote);padding:0 0 0 20px;margin:0 0 1.4rem;font-size:var(--text-quote)}
+.prose hr{border:none;border-top:var(--rule-double);margin:2.5rem 0}
