@@ -1,0 +1,35 @@
+---
+/* 記事の扉。二重罫の中に表題と日付を組み、以下に本文を流す。扉は filled=false（素紙）。 */
+import BaseLayout from './BaseLayout.astro';
+import Frame from '@/components/Frame.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+interface Props {
+  title: string;
+  date: Date | string;
+  description?: string;
+  label?: string;
+}
+const { title, date, description, label } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <article>
+    <div class="mx-auto w-prose max-w-[calc(100%-2em)] px-[1em]">
+      <Frame filled={false}>
+        <div class="pt-4 pb-3 text-center">
+          {label && (
+            <div class="mb-4 font-garamond text-[12px] uppercase tracking-[var(--tracking-label)] text-ink-muted">{label}</div>
+          )}
+          <h1 class="m-0 font-mincho-display [font-weight:var(--weight-title)] text-[24px] leading-[1.6] tracking-[0.1em] text-ink">{title}</h1>
+          <div class="mt-[22px] flex items-center justify-center gap-4">
+            <span class="h-px w-[40px] bg-rule-inner"></span>
+            <span class="text-[13px]"><FormattedDate date={date} /></span>
+            <span class="h-px w-[40px] bg-rule-inner"></span>
+          </div>
+        </div>
+      </Frame>
+    </div>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

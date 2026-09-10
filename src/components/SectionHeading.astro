@@ -1,0 +1,18 @@
+---
+/* 欧文の小ラベル、中央揃えの明朝、3px の二重罫。 */
+interface Props {
+  label?: string;
+  title: string;
+  level?: 'h1' | 'h2';
+  align?: 'center' | 'left';
+}
+const { label, title, level = 'h1', align = 'center' } = Astro.props;
+const Tag = level;
+---
+<header class:list={['mb-[30px]', align === 'center' ? 'text-center' : 'text-left']}>
+  {label && (
+    <div class="mb-[14px] font-garamond text-[12px] uppercase tracking-[var(--tracking-label)] text-ink-muted">{label}</div>
+  )}
+  <Tag class="m-0 font-mincho-display [font-weight:var(--weight-title)] tracking-[0.1em] text-ink">{title}</Tag>
+  <div class="mt-[18px] border-b-[3px] border-double border-b-[rgb(var(--black)/.55)]"></div>
+</header>

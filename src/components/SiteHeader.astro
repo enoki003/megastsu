@@ -1,0 +1,23 @@
+---
+/* 題号は nav の中で絶対中央。リンク群の幅に関係なく光学的中央に留まる。
+   固定はしない — ヘッダは頁と一緒に流れる。900px 未満で縦積み、社交記号は消える。 */
+import HeaderLink from './HeaderLink.astro';
+import SocialIconLink from './SocialIconLink.astro';
+import { SITE_TITLE } from '@/consts';
+---
+<header class="mb-[3.5em] px-[2.75em] pt-[1.6em] pb-[1.35em] bg-paper border-b-[3px] border-double border-b-[rgb(var(--black)/.55)] max-[900px]:px-[1.25em]">
+  <nav class="relative flex items-center justify-between max-[900px]:flex-col max-[900px]:gap-[1em]">
+    <div class="flex gap-[30px]">
+      <HeaderLink href="/">profile</HeaderLink>
+      <HeaderLink href="/notes">notes</HeaderLink>
+      <HeaderLink href="/journal">journal</HeaderLink>
+    </div>
+    <h2 class="absolute left-1/2 -translate-x-1/2 m-0 font-mincho-display [font-weight:var(--weight-title)] text-[var(--text-sitetitle)] tracking-[0.14em] text-center whitespace-nowrap max-[900px]:static max-[900px]:translate-x-0 max-[900px]:order-first">
+      <a href="/" class="no-underline text-ink">{SITE_TITLE}</a>
+    </h2>
+    <div class="flex items-center gap-[20px] max-[900px]:hidden">
+      <SocialIconLink icon="x" href="https://x.com/sonoyu1229" label="Follow on X" />
+      <SocialIconLink icon="github" href="https://github.com/enoki003" label="Go to GitHub repo" />
+    </div>
+  </nav>
+</header>

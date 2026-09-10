@@ -1,17 +1,18 @@
 ---
+/* Feb 25, 2026 — 欧文は EB Garamond、字送りを広げて印字のように見せる。
+   ja-JP（2026/2/25）は詰まった一覧のためだけに残す。 */
 interface Props {
-	date: Date;
+  date: Date | string;
+  locale?: 'en-us' | 'ja-JP';
+  plain?: boolean;
 }
-
-const { date } = Astro.props;
+const { date, locale = 'en-us', plain = false } = Astro.props;
+const d = date instanceof Date ? date : new Date(date);
+const text =
+  locale === 'ja-JP'
+    ? d.toLocaleDateString('ja-JP')
+    : d.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
-
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
-</time>
+<time
+  datetime={d.toISOString()}
+  class:list={[!plain && 'font-garamond tracking-[var(--tracking-date)] text-ink-muted']}>{text}</time>

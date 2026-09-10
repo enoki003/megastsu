@@ -1,16 +1,16 @@
 ---
-import { getPostListing } from '../../lib/postListing'
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import PostListingPage from '../../components/PostListingPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import PostList from '@/components/PostList.astro';
+import { getCollection } from 'astro:content';
 
-
-const sorted =  await getPostListing("notes");
+const entries = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
-
-<PostListingPage
-  title="Notes"
-  basePath="/notes"
-  entries={sorted}
-  pageTitle={`Notes - ${SITE_TITLE}`}
-  description={SITE_DESCRIPTION}
-/> 
+<BaseLayout title="Notes">
+  <main class="mx-auto my-[3em] w-prose max-w-[calc(100%-2em)] px-[1em]">
+    <SectionHeading label="Notes" title="Notes" />
+    <PostList entries={entries} basePath="/notes" />
+  </main>
+</BaseLayout>

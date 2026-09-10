@@ -1,0 +1,22 @@
+---
+/* .card-list（PostListingPage.astro）。カード同士の間隔は --space-list-gap。 */
+import PostPanel from './PostPanel.astro';
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  entries: CollectionEntry<'notes'>[] | CollectionEntry<'journal'>[];
+  basePath: string;
+}
+const { entries, basePath } = Astro.props;
+---
+<ul class="m-0 flex list-none flex-col gap-[var(--space-list-gap)] p-0">
+  {entries.map((entry) => (
+    <li>
+      <PostPanel
+        href={`${basePath}/${entry.id}/`}
+        title={entry.data.title}
+        date={entry.data.date}
+        description={entry.data.description}
+      />
+    </li>
+  ))}
+</ul>

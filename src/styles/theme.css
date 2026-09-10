@@ -1,0 +1,71 @@
+/* トークン → Tailwind ユーティリティ / shadcn 変数。
+   ここには「対応関係」しか書かない。色・寸法の literal は tokens/ 側にのみ存在する。
+   例外は罫の不透明度（.35 / .18 / .45）で、これは DS が構造定数として定めた値である。 */
+@theme inline{
+  /* 紙と墨 */
+  --color-paper:var(--paper);
+  --color-panel:var(--panel);
+  --color-ink:var(--ink);
+  --color-ink-body:var(--ink-body);
+  --color-ink-muted:var(--ink-muted);
+  /* 深緑（唯一の差し色）と朱（落款専用） */
+  --color-fukamidori:var(--accent);
+  --color-fukamidori-dark:var(--accent-dark);
+  --color-shu:var(--vermilion);
+  /* 罫 */
+  --color-rule:var(--ink);
+  --color-rule-inner:rgb(var(--black) / .35);
+  --color-rule-hair:rgb(var(--black) / .18);
+  --color-wash:var(--code-bg);
+
+  /* shadcn の意味色をトークンへ寄せる。shadcn の --accent は「ホバー面」であり、
+     このブランドの深緑（差し色）ではない。混同を避けるため深緑は fukamidori として別に置く。 */
+  --color-background:var(--paper);
+  --color-foreground:var(--ink);
+  --color-card:var(--panel);
+  --color-card-foreground:var(--ink);
+  --color-popover:var(--panel);
+  --color-popover-foreground:var(--ink);
+  --color-primary:var(--ink);
+  --color-primary-foreground:var(--paper);
+  --color-secondary:var(--paper);
+  --color-secondary-foreground:var(--ink);
+  --color-muted:var(--paper);
+  --color-muted-foreground:var(--ink-muted);
+  --color-accent:var(--code-bg);
+  --color-accent-foreground:var(--ink);
+  --color-destructive:var(--ink);        /* 破壊的操作の専用色は無い。朱は落款のみ。 */
+  --color-destructive-foreground:var(--paper);
+  --color-border:rgb(var(--black) / .35);
+  --color-input:rgb(var(--black) / .45);
+  --color-ring:var(--accent);
+
+  /* 書体。DS 側の変数名（--font-display 等）は Tailwind の --font-* 名前空間と衝突するため別名で受ける。 */
+  --font-mincho-display:var(--font-display);
+  --font-mincho-body:var(--font-body);
+  --font-garamond:var(--font-latin);
+  --font-gothic:var(--font-heading);
+
+  /* 角丸ゼロ。shadcn の既定半径は全て潰す。8px は画像と pre にのみ生き残る。 */
+  --radius:0px;
+  --radius-none:0px;
+  --radius-xs:0px;
+  --radius-sm:0px;
+  --radius-md:0px;
+  --radius-lg:0px;
+  --radius-xl:0px;
+  --radius-2xl:0px;
+  --radius-3xl:0px;
+  --radius-full:0px;
+  --radius-image:var(--radius-media);
+  --radius-code-inline:var(--radius-code);
+
+  /* 影ゼロ。唯一の例外がホバー時の硬い 1px 罫。 */
+  --shadow-raised:0 1px 0 rgb(var(--black) / .35);
+  --shadow-2xs:none;--shadow-xs:none;--shadow-sm:none;--shadow:none;
+  --shadow-md:none;--shadow-lg:none;--shadow-xl:none;--shadow-2xl:none;
+  --shadow-inner:none;
+
+  /* 版面 720px（max-w-prose を上書きする） */
+  --container-prose:var(--measure-prose);
+}

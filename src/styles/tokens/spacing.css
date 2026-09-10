@@ -1,0 +1,21 @@
+:root{
+  --measure-prose:720px;      /* main / .prose width */
+  --measure-gutter:1em;
+  --space-panel:16px;         /* PostPanel padding */
+  --space-frame:26px 30px 28px; /* Frame の内側余白 */
+  --space-frame-tight:16px 20px;
+  --space-panel-gap:12px;
+  --space-list-gap:22px;      /* カード同士の間隔 */
+  --space-header-y:1em;
+  --space-header-x:2em;
+  --space-section:5rem;       /* main > section + section */
+  --space-prose-h2:2.5rem;    /* .prose h2 margin-top */
+  --space-prose-h3:2rem;
+  --space-prose-h4:1.5rem;
+  --space-para:1.25rem;
+  --space-footer:1.5em 1em;
+  --radius-panel:10px;        /* PostPanel */
+  --radius-media:8px;         /* img, pre */
+  --radius-code:2px;
+  --nav-underline:3px;        /* 現在地の深緑罫 */
+}

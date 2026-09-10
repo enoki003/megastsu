@@ -1,0 +1,25 @@
+---
+/* 詫びる文面のみ。誘導や煽りは置かない。戻り道は ghost の Button 一つ。 */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Frame from '@/components/Frame.astro';
+import { Button } from '@/components/ui/button';
+---
+<BaseLayout title="頁が見つかりません">
+  <main class="mx-auto my-[3em] w-prose max-w-[calc(100%-2em)] px-[1em]">
+    <Frame filled={false}>
+      <div class="flex min-h-[240px] flex-col items-center justify-center text-center">
+        <div class="mb-[28px] font-garamond text-[12px] uppercase tracking-[var(--tracking-label)] text-ink-muted">Not Found</div>
+        <h1 class="m-0 font-mincho-display [font-weight:var(--weight-title)] text-[20px] leading-[1.6] tracking-[0.1em] text-ink">頁が見つかりません</h1>
+        <div class="mx-auto my-[22px] h-px w-[46px] bg-rule-inner"></div>
+        <p class="m-0 max-w-[420px] font-mincho-body text-[14px] leading-[2] tracking-[0.05em] text-ink-body justify-ideograph">
+          お探しの頁は、移動または削除された可能性がございます。恐れ入りますが、以下のいずれかへお戻りいただければ幸いでございます。
+        </p>
+        <div class="mt-[30px] flex flex-wrap justify-center gap-[14px]">
+          <Button asChild variant="ghost" size="sm"><a href="/">profile</a></Button>
+          <Button asChild variant="ghost" size="sm"><a href="/notes">notes</a></Button>
+          <Button asChild variant="ghost" size="sm"><a href="/journal">journal</a></Button>
+        </div>
+      </div>
+    </Frame>
+  </main>
+</BaseLayout>

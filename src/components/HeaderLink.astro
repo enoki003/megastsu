@@ -1,24 +1,21 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
-
-type Props = HTMLAttributes<'a'>;
-
-const { href, class: className, ...props } = Astro.props;
-const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
+/* 現在地は深緑と 3px の下罫で示す。元サイトの唯一の相互作用言語。 */
+interface Props {
+  href: string;
+  class?: string;
+}
+const { href, class: cls } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const target = href.replace(/\/+$/, '') || '/';
+const active = pathname === target;
 ---
-
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
-	<slot />
-</a>
-<style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-	}
-	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
-	}
-</style>
+<a
+  href={href}
+  aria-current={active ? 'page' : undefined}
+  class:list={[
+    'inline-block py-[0.5em] font-mincho-display text-[13px] tracking-[var(--tracking-nav)] no-underline border-b-[var(--nav-underline)] transition-[color,border-bottom-color,opacity] duration-[var(--dur-quick)]',
+    active
+      ? 'text-fukamidori border-b-fukamidori'
+      : 'text-ink border-b-transparent hover:text-fukamidori hover:border-b-fukamidori hover:opacity-[var(--hover-opacity)]',
+    cls,
+  ]}><slot /></a>
