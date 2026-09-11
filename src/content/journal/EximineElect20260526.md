@@ -1,7 +1,8 @@
 ---
 title: "電子回路の各種機器を使ってみる"
-discription : "no content"
-draft : True
+date: 2026-05-26
+description: "no content"
+draft: true
 ---
 
 # 概要
