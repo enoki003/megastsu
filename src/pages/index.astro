@@ -5,12 +5,14 @@ import Frame from '@/components/Frame.astro';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-const subjects = ['人工知能', '数学基礎論', '理論物理', '西洋哲学', '書評'];
+const subjects = ['人工知能', '数学', '物理', '哲学', '書評','神経科学','計算機科学'];
 const correspondence = [
   { key: 'Email', value: 'sonoyu1229@outlook.jp', href: 'mailto:sonoyu1229@outlook.jp' },
   { key: 'X', value: '@sonoyu1229', href: 'https://x.com/sonoyu1229' },
   { key: 'GitHub', value: 'enoki003', href: 'https://github.com/enoki003' },
   { key: 'Instagram', value: 'enoki003', href: 'https://www.instagram.com/enoki003/' },
+  { key: 'Linkedin', value: 'yuhi sonoki', href: 'https://www.linkedin.com/in/yuhi-sonoki-3bbbb7402' },
+
 ];
 ---
 <BaseLayout>
@@ -22,7 +24,7 @@ const correspondence = [
           <div class="font-garamond text-[30px] leading-[1.35] tracking-[0.14em] text-ink">Yuhi Sonoki</div>
           <div class="mx-auto my-[22px] h-px w-[46px] bg-rule-inner"></div>
           <div class="font-mincho-body text-[13px] leading-[2] tracking-[0.1em] text-ink-muted">
-            情報理工学部 在学<br />人工知能・数学基礎論
+            情報理工学部 在学<br />人工知能・神経科学・計算機科学
           </div>
         </div>
       </div>
@@ -35,7 +37,8 @@ const correspondence = [
         <div class="mx-auto mt-4 w-[280px] border-b-[3px] border-double border-b-[rgb(var(--black)/.55)]"></div>
       </header>
       <p class="mx-auto max-w-[560px] font-mincho-body text-[15px] leading-[2.1] tracking-[0.06em] text-ink-body justify-ideograph">
-        京都府立京都すばる高等学校 情報科学科を経て、京都産業大学 情報理工学部に在学しております。人工知能を中心に、数学基礎論や理論物理、西洋哲学など幅広い分野に興味を持っております。学問の分類は便宜上のものであり、実際にはすべてが繋がっていると考えているためです。
+      京都府立京都すばる高等学校 情報科学科を経て、京都産業大学 情報理工学部に在学しております。
+      神経科学、人工知能、哲学、物理など様々な分野に興味を持っています。
       </p>
       <p class="mx-auto mt-[1.4rem] max-w-[560px] font-mincho-body text-[15px] leading-[2.1] tracking-[0.06em] text-ink-body justify-ideograph">
         趣味は本、背広、珈琲、骨董、散歩など。昭和の文化を好み、昔ながらの良き紳士たらんと努めております。
